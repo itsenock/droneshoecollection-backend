@@ -28,10 +28,6 @@ users = db["users"]
 items = db["items"]
 orders = db["orders"]
 
-# Indexes
-users.create_index([("email", ASCENDING)], unique=True)
-items.create_index([("sold", ASCENDING)])
-orders.create_index([("status", ASCENDING)])
 
 # JWT configuration
 app.config["JWT_SECRET_KEY"] = os.getenv("JWT_SECRET_KEY")
@@ -47,7 +43,11 @@ app.config["UPLOAD_FOLDER"] = UPLOAD_FOLDER
 def email_exists(email):
     return users.find_one({"email": email}) is not None
 
-
+def create_indexes():
+    users.create_index([("email", ASCENDING)], unique=True)
+    items.create_index([("sold", ASCENDING)])
+    orders.create_index([("status", ASCENDING)])
+    
 # Registration route
 @app.route("/register", methods=["POST"])
 def register():

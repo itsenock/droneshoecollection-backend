@@ -7,3 +7,5 @@ uploads/
 # Ignore Python cache files
 __pycache__/
 *.pyc
+# Ignore large files
+ssl
