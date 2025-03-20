@@ -9,12 +9,15 @@ from werkzeug.utils import secure_filename
 import uuid
 from datetime import datetime
 
+
 # Load environment variables
 load_dotenv()
 
 app = Flask(__name__)
 bcrypt = Bcrypt(app)
 jwt = JWTManager(app)
+
+port = int(os.getenv("PORT", 5000))
 
 # MongoDB configuration
 client = MongoClient(os.getenv("MONGO_URI"))
@@ -413,4 +416,4 @@ def admin_view_items(status):
 
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run(host="0.0.0.0",port=port, debug=True)
