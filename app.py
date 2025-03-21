@@ -4,6 +4,7 @@ from flask_jwt_extended import JWTManager, create_access_token, jwt_required, ge
 from pymongo import MongoClient, ASCENDING
 from bson.objectid import ObjectId
 import os
+import certifi
 from dotenv import load_dotenv
 from werkzeug.utils import secure_filename
 import uuid
@@ -20,7 +21,7 @@ jwt = JWTManager(app)
 port = int(os.getenv("PORT", 5000))
 
 # MongoDB configuration
-client = MongoClient(os.getenv("MONGO_URI"))
+client = MongoClient(os.getenv("MONGO_URI"),tlsCAFile =certifi.where())
 db = client["droneshoecollection"]
 
 # Collections
