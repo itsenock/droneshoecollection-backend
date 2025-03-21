@@ -21,7 +21,7 @@ jwt = JWTManager(app)
 port = int(os.getenv("PORT", 5000))
 
 # MongoDB configuration
-client = MongoClient(os.getenv("MONGO_URI"),tlsCAFile =certifi.where())
+client = MongoClient(os.getenv("MONGO_URI"),tlsAllowInvalidCertificates=True)
 db = client["droneshoecollection"]
 
 # Collections
