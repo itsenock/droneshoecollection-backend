@@ -9,6 +9,7 @@ from dotenv import load_dotenv
 from werkzeug.utils import secure_filename
 import uuid
 from datetime import datetime
+from flask_cors import CORS
 
 
 # Load environment variables
@@ -17,6 +18,8 @@ load_dotenv()
 app = Flask(__name__)
 bcrypt = Bcrypt(app)
 jwt = JWTManager(app)
+
+CORS(app,resources={r"/*": {"origins": "*"}})
 
 port = int(os.getenv("PORT", 5000))
 
