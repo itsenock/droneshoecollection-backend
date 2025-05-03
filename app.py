@@ -26,7 +26,7 @@ app.config['UPLOAD_FOLDER'] = 'uploads'
 app.config.from_object('config.Config')
 load_dotenv()
 
-CORS(app)
+CORS(app, origins=["https://drone-rho-five.vercel.app","http://localhost:5173"])
 
 client = MongoClient(app.config['MONGO_URI'])
 db = client['user_database']
