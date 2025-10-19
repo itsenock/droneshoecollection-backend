@@ -39,6 +39,10 @@ app.register_blueprint(cart_bp, url_prefix='/api')
 app.register_blueprint(payment_bp, url_prefix='/api') 
 app.register_blueprint(admin_bp, url_prefix='/api/admin')
 
+@app.route('/health')
+def health():
+    return {"status": "ok"}, 200
+
 # Serve static files from the uploads directory
 @app.route('/uploads/<filename>')
 def uploaded_file(filename):
